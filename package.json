@@ -1,0 +1,33 @@
+{
+  "name": "csw-features-seed",
+  "version": "0.0.1",
+  "description": "A seed project for running feature tests with cucumberjs and selenium webdriver",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumberjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joeflintham/csw-features-seed.git"
+  },
+  "keywords": [
+    "feature-tests",
+    "tdd",
+    "bdd",
+    "cucumberjs"
+  ],
+  "author": "Joe Flintham",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joeflintham/csw-features-seed/issues"
+  },
+  "homepage": "https://github.com/joeflintham/csw-features-seed#readme",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "chromedriver": "^2.25.1",
+    "cucumber": "^1.3.1",
+    "dotenv": "^2.0.0",
+    "phantomjs": "^2.1.7",
+    "selenium-webdriver": "^2.53.3"
+  }
+}
