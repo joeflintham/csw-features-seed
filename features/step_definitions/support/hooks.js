@@ -1,13 +1,12 @@
 'use strict';
-/* eslint new-cap: 0 */
 
-const { After, Before } = require('cucumber');
+const { After: after, Before: before } = require('cucumber');
 const helpers = require('./test-helpers');
 
-Before(async function() {
+before(async function() {
 	this.driver = await helpers.getDriver();
 });
 
-After(function() {
+after(function() {
 	this.driver.quit();
 });
