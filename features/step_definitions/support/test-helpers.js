@@ -1,46 +1,47 @@
 'use strict';
 const dotenv = require('dotenv');
+
+const webdriver = require('selenium-webdriver');
+const { setDefaultTimeout } = require('cucumber');
+
 dotenv.config();
 
-var webdriver = require('selenium-webdriver');
+const HOST = process.env.HOST || 'http://localhost';
+const BROWSER = process.env.BROWSER || 'chrome';
+// const BROWSER_WIDTH = parseInt(process.env.BROWSER_WIDTH, 10) || 1280;
+// const BROWSER_HEIGHT = parseInt(process.env.BROWSER_HEIGHT, 10) || 800;
+const SCRIPT_TIMEOUT = parseInt(process.env.SCRIPT_TIMEOUT, 10) || 5000;
 
-var HOST = process.env.HOST || 'http://localhost';
-var BROWSER = process.env.BROWSER || 'chrome';
-var BROWSER_WIDTH = parseInt(process.env.BROWSER_WIDTH, 10) || 1280;
-var BROWSER_HEIGHT = parseInt(process.env.BROWSER_HEIGHT, 10) || 800;
-var SCRIPT_TIMEOUT = parseInt(process.env.SCRIPT_TIMEOUT, 10) || 5000;
 
-var urls = {
-    home: HOST
+webdriver.promise.USE_PROMISE_MANAGER = false;
+
+setDefaultTimeout(SCRIPT_TIMEOUT);
+
+const urls = {
+	home: HOST,
 };
 
 module.exports = {
-    driver: null,
+	driver: null,
 
-    getURL: (key) => urls[key],
+	getURL: (key) => urls[key],
 
-    getHost: () => HOST,
+	getHost: () => HOST,
 
-    createDriver: function () {
-        this.driver = new webdriver.Builder()
-            .withCapabilities({browserName: BROWSER, logLevel: 'verbose'})
-            .build();
+	destroyDriver: function() {
+		this.driver.quit();
+	},
 
-        this.driver.manage().window().setSize(BROWSER_WIDTH, BROWSER_HEIGHT);
-        var p = webdriver.promise.defer();
-        p.fulfill();
-        return p;
-    },
+	getDriver: async function() {
+		const driver = await new webdriver.Builder()
+			.withCapabilities({ browserName: BROWSER, loglevel: 'verbose' })
+			.build();
 
-    destroyDriver: function () {
-        this.driver.quit();
-    },
+		// driver.manage().window().setSize(BROWSER_WIDTH, BROWSER_HEIGHT);
+		return driver;
+	},
 
-    getDriver: function () {
-        return this.driver;
-    },
-
-    getTimeout: function () {
-        return SCRIPT_TIMEOUT;
-    }
+	getTimeout: function() {
+		return SCRIPT_TIMEOUT;
+	},
 };
