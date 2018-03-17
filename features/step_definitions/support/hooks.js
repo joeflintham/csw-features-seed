@@ -1,18 +1,12 @@
 'use strict';
-var helpers = require('./test-helpers');
+const webdriver = require('selenium-webdriver');
+const { After, Before } = require('cucumber');
+const helpers = require('./test-helpers');
 
-var hooks = function hooks() {
-    this.registerHandler('BeforeFeature', function registerBeforeFeatureHandler(event, callback) {
-        helpers.createDriver().then(function(){
-            callback();
-        });
-    });
+Before(async function() {
+    this.driver = await helpers.getDriver();
+});
 
-    this.registerHandler('AfterFeature', function registerAfterFeatureHandler(event, callback) {
-        helpers.driver.quit().then(function q() {
-            callback();
-        });
-    });
-};
-
-module.exports = hooks;
+After(function() {
+    this.driver.quit();
+});

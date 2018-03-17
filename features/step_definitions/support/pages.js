@@ -1,18 +1,16 @@
 'use strict';
 const dotenv = require('dotenv');
-dotenv.config();
+const helpers = require('./test-helpers');
 
-var helpers = require('./test-helpers');
-
-var urls = {
-    home: helpers.getHost()
+const urls = {
+    home: helpers.getHost(),
 };
 
-var titles = {
-    home: '<MY_HOME_PAGE>'
+const titles = {
+    home: '',
 };
 
 module.exports = {
     getUrl: (page) => urls[page],
-    getTitle: (page) => titles[page]
+    getTitle: (page) => titles[page],
 };
