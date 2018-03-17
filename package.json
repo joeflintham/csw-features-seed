@@ -4,7 +4,8 @@
   "description": "A seed project for running feature tests with cucumberjs and selenium webdriver",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js"
+    "test": "cucumber-js",
+    "lint": "eslint ./"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,9 @@
     "chromedriver": "^2.36.0",
     "cucumber": "^4.0.0",
     "dotenv": "^5.0.1",
+    "eslint": "^4.19.0",
+    "eslint-plugin-cucumber": "^1.1.0",
+    "eslint-plugin-jasmine": "^2.9.3",
     "phantomjs-prebuilt": "^2.1.16",
     "selenium-webdriver": "^4.0.0-alpha.1"
   }

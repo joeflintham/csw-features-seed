@@ -1,16 +1,15 @@
 'use strict';
-const dotenv = require('dotenv');
 const helpers = require('./test-helpers');
 
 const urls = {
-    home: helpers.getHost(),
+	home: helpers.getHost(),
 };
 
 const titles = {
-    home: '',
+	home: '',
 };
 
 module.exports = {
-    getUrl: (page) => urls[page],
-    getTitle: (page) => titles[page],
+	getUrl: (page) => urls[page],
+	getTitle: (page) => titles[page],
 };

@@ -14,5 +14,5 @@ Given(/^I am on the '(.*)' page$/, async function(page) {
 Then(/^I should see the '(.*)' page$/, async function(page) {
 	const title = await this.driver.getTitle();
 
-	expect(title).to.equal(pages.getTitle(page));
+	return expect(title).to.equal(pages.getTitle(page));
 });
